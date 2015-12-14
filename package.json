@@ -41,8 +41,19 @@
     "ember-addon"
   ],
   "dependencies": {
+    "broccoli-babel-transpiler": "^5.5.0",
+    "broccoli-concat": "0.0.13",
+    "broccoli-funnel": "^1.0.1",
+    "broccoli-merge-trees": "^1.1.0",
+    "broccoli-petal": "0.0.2",
+    "broccoli-stew": "^1.0.4",
+    "d3-path": "^0.1.2",
+    "d3-shape": "^0.2.0",
     "ember-cli-babel": "^5.1.5"
   },
+  "bundledDependencies": [
+    "d3-path"
+  ],
   "ember-addon": {
     "configPath": "tests/dummy/config"
   }
