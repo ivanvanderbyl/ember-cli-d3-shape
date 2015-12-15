@@ -8,10 +8,6 @@ var esTranspiler = require('broccoli-babel-transpiler');
 const concat = require('broccoli-concat');
 
 module.exports = {
-  isDevelopingAddon: function(){
-    return true;
-  },
-
   name: 'd3',
 
   d3Modules: [
@@ -19,6 +15,13 @@ module.exports = {
     'd3-shape',
     'd3-selection',
     'd3-array',
+    'd3-arrays',
+    'd3-scale',
+    'd3-time',
+    'd3-color', // Known issues loading. Needs custom compile options.
+    'd3-interpolate',
+    'd3-format',
+    'd3-time-format',
   ],
 
   included: function(app) {
@@ -51,14 +54,14 @@ module.exports = {
         modules: 'amd',
 
         comments: false,
-        compact: true,
+        compact: false,
 
         moduleRoot: packageName,
 
         blacklist: [
           'useStrict'
         ],
-        code: true,
+        code: false,
 
         getModuleId: function (name) {
           name = name
