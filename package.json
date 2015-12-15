@@ -1,7 +1,7 @@
 {
-  "name": "ember-cli-d3",
-  "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "name": "ember-cli-d3-primitive",
+  "version": "0.1.0",
+  "description": "Modular D3 dependencies for Ember CLI based on D3 v4 packages",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -15,7 +15,7 @@
   "engines": {
     "node": ">= 0.10.0"
   },
-  "author": "",
+  "author": "Ivan Vanderbyl",
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.2.0",
@@ -38,21 +38,29 @@
     "ember-try": "~0.0.8"
   },
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "d3",
+    "d3-shape",
+    "canvas",
+    "visualisation",
+    "new d3"
   ],
   "dependencies": {
     "broccoli-babel-transpiler": "^5.5.0",
     "broccoli-concat": "0.0.13",
     "broccoli-funnel": "^1.0.1",
     "broccoli-merge-trees": "^1.1.0",
-    "broccoli-petal": "0.0.2",
-    "broccoli-stew": "^1.0.4",
+    "d3-array": "^0.5.2",
     "d3-path": "^0.1.2",
+    "d3-selection": "^0.4.12",
     "d3-shape": "^0.2.0",
     "ember-cli-babel": "^5.1.5"
   },
   "bundledDependencies": [
-    "d3-path"
+    "d3-path",
+    "d3-array",
+    "d3-selection",
+    "d3-shape"
   ],
   "ember-addon": {
     "configPath": "tests/dummy/config"

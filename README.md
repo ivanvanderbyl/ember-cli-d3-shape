@@ -1,12 +1,37 @@
-# Ember-cli-d3
+# ember-cli-d3-primitive
 
-This README outlines the details of collaborating on this Ember addon.
+This addon provides a version of D3 based on the new v4 code branches at github.com/d3. 
+It's all ES2015 code, so you can import only what you need. Only want a line? `import { line } from 'd3-shape'`.
 
-## Installation
+### Included D3 modules:
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
+- d3-shape
+- d3-array
+- d3-path
+- d3-selection
+
+__This addon will be updated when new releases are cut of these packages.__
+
+## Installation & Usage
+
+Install this like any other Ember Addon:
+
+```bash
+ember install ember-cli-d3-primitive
+```
+
+Then import what you need from each module:
+
+```js
+import { cardinal, cardinalClosed } from  'd3-shape';
+import { select } from 'd3-selection';
+
+export default Ember.Component.extend({
+  didInsertElement() {
+    this.chart = select(this.element.querySelector('svg'));
+  }
+});
+```
 
 ## Running
 
