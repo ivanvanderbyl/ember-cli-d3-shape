@@ -1,14 +1,15 @@
 # ember-cli-d3-primitive
 
 This addon provides a version of D3 based on the new v4 code branches at https://github.com/d3. 
+
 It's all ES2015 code, so you can import only what you need. Only need a line? `import { line } from 'd3-shape'`.
 
 ### Included D3 modules:
 
-- d3-shape
-- d3-array
-- d3-path
-- d3-selection
+- [d3-shape](https://github.com/d3/d3-shape)
+- [d3-array](https://github.com/d3/d3-array)
+- [d3-path](https://github.com/d3/d3-path)
+- [d3-selection](https://github.com/d3/d3-selection)
 
 _This addon will be updated when new releases are cut of these packages._
 
