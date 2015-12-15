@@ -10,6 +10,13 @@ It's all ES2015 code, so you can import only what you need. Only need a line? `i
 - [d3-array](https://github.com/d3/d3-array)
 - [d3-path](https://github.com/d3/d3-path)
 - [d3-selection](https://github.com/d3/d3-selection)
+- [d3-scale](https://github.com/d3/d3-scale)
+- [d3-scale](https://github.com/d3/d3-scale)
+- [d3-color](https://github.com/d3/d3-color)
+- [d3-time](https://github.com/d3/d3-time)
+- [d3-interpolate](https://github.com/d3/d3-interpolate)
+- [d3-format](https://github.com/d3/d3-format)
+- [d3-time-format](https://github.com/d3/d3-time-format)
 
 _This addon will be updated when new releases are cut of these packages._
 
