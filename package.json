@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-d3-primitive",
-  "version": "0.3.0",
+  "version": "0.2.0",
   "description": "D3 Shape and dependent packages for Ember.js",
   "directories": {
     "doc": "doc",
