@@ -51,7 +51,7 @@ module.exports = {
         modules: 'amd',
 
         comments: false,
-        compact: true,
+        compact: false,
 
         moduleRoot: packageName,
 
