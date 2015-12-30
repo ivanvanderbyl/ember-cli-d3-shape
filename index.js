@@ -19,6 +19,14 @@ module.exports = {
     'd3-shape',
     'd3-selection',
     'd3-array',
+    'd3-scale',
+    'd3-interpolate',
+    'd3-color',
+    'd3-format',
+    'd3-time-format',
+    'd3-time',
+    'd3-ease',
+    // 'd3-transition', // Disabled until this is ported from d3 properly
   ],
 
   included: function(app) {
@@ -26,7 +34,7 @@ module.exports = {
     this.app = app;
 
     this.d3Modules.forEach(function(packageName) {
-      app.import(path.join('vendor', packageName, 'main.js'));
+      app.import(path.join('vendor', 'd3', packageName + '.js'));
     });
   },
 
@@ -52,6 +60,7 @@ module.exports = {
 
         comments: false,
         compact: false,
+        loose: true,
 
         moduleRoot: packageName,
 
@@ -81,14 +90,14 @@ module.exports = {
           }
         }
       }, {
-        annotation: 'Transpile D3 Source to AMD ['+ packageName+ ']',
+        annotation: 'Transpile D3 source to AMD ['+ packageName+ ']',
       });
 
       trees.push(concat(compiledSrcTree, {
         inputFiles: [
           '**/**/*.js'
         ],
-        outputFile: '/' + packageName + '/main.js'
+        outputFile: '/d3/' + packageName + '.js'
       }));
     });
 
