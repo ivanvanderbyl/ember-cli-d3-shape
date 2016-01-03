@@ -34,7 +34,7 @@ module.exports = {
     this.app = app;
 
     this.d3Modules.forEach(function(packageName) {
-      app.import(path.join('vendor', 'd3', packageName + '.js'));
+      app.import(path.join('vendor', packageName, packageName + '.js'));
     });
   },
 
@@ -54,20 +54,22 @@ module.exports = {
       });
 
       var compiledSrcTree = esTranspiler(srcTree, {
-        stage: 1,
+        persist: false,
+
+        stage: 0,
         moduleIds: true,
         modules: 'amd',
 
-        comments: false,
+        comments: true,
         compact: false,
         loose: true,
 
         moduleRoot: packageName,
 
         blacklist: [
+        code: true,
           'useStrict'
         ],
-        code: true,
 
         getModuleId: function (name) {
           name = name
@@ -97,7 +99,7 @@ module.exports = {
         inputFiles: [
           '**/**/*.js'
         ],
-        outputFile: '/d3/' + packageName + '.js'
+        outputFile: '/' + packageName + '/' + packageName + '.js'
       }));
     });
 
