@@ -67,7 +67,6 @@ module.exports = {
         moduleRoot: packageName,
 
         blacklist: [
-        code: true,
           'useStrict'
         ],
 
