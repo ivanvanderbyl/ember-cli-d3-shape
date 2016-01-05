@@ -44,8 +44,14 @@ module.exports = {
     if (tree) { trees.push(tree); }
 
     this.d3Modules.forEach(function(packageName) {
-      var packageBuildPath = path.join('build', packageName + '.js');
-      var d3PathToSrc = require.resolve(packageName).replace(packageBuildPath, '');
+      let importFileBaseName = path.parse(require.resolve(packageName)).name;
+      var d3PathToSrc;
+      if (importFileBaseName === 'index') {
+        d3PathToSrc = require.resolve(packageName).replace(/index\.js$/, '');
+      }else{
+        var packageBuildPath = path.join('build', packageName + '.js');
+        d3PathToSrc = require.resolve(packageName).replace(packageBuildPath, '');
+      }
 
       let srcTree = new Funnel(path.join(d3PathToSrc), {
         include: ['src/**/*.js', 'index.js'],
