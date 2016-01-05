@@ -62,13 +62,13 @@ module.exports = {
 
         comments: true,
         compact: false,
-        loose: true,
+        loose: false,
 
         moduleRoot: packageName,
 
-        blacklist: [
-          'useStrict'
-        ],
+        // blacklist: [
+        //   'useStrict'
+        // ],
 
         getModuleId: function (name) {
           name = name
