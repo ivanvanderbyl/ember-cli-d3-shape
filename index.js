@@ -26,6 +26,7 @@ module.exports = {
     'd3-time-format',
     'd3-time',
     'd3-ease',
+    'd3-collection',
     // 'd3-transition', // Disabled until this is ported from d3 properly
   ],
 
