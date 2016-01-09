@@ -52,7 +52,7 @@
     "broccoli-persistent-filter": "^1.1.6",
     "d3-array": "^0.6.2",
     "d3-collection": "^0.1.0",
-    "d3-color": "github:d3/d3-color#remove-circular-import",
+    "d3-color": "github:d3/d3-color#master",
     "d3-ease": "^0.3.1",
     "d3-format": "^0.4.2",
     "d3-interpolate": "^0.3.0",
