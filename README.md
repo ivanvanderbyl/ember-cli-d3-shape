@@ -4,7 +4,10 @@
 
 This addon provides a version of D3 based on the new v4 code branches at https://github.com/d3. 
 
-It's separate packages, so you can import only what you need without loading the entire `d3.js` as other addons do. 
+Each package is compiled and importable as per the d3 documentation for each package. 
+This also means that you don't need to import the entire `d3.js` build in to your App if you
+only want to use a function or two. Check out [d3-array](https://github.com/d3/d3-array) for
+an extensive library of useful Array functions not natively found in Javascript.
 
 Example usage:
 
