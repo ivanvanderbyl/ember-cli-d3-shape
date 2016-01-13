@@ -39,6 +39,7 @@ _This addon will be updated when new releases are cut of these packages.
 Currently none of these are 1.0 stable, so some of your code might break by 
 upgrading. It is recommended that you have solid tests in place._
 
+[![Build Status](https://travis-ci.org/ivanvanderbyl/ember-cli-d3-primitive.svg)](https://travis-ci.org/ivanvanderbyl/ember-cli-d3-primitive)
 
 ## Installation & Usage
 
