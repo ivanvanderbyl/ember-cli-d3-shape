@@ -6,6 +6,7 @@ var mergeTrees = require('broccoli-merge-trees');
 var path = require('path');
 var esTranspiler = require('broccoli-babel-transpiler');
 const concat = require('broccoli-concat');
+var packageDependencies = require("./package.json")['dependencies'];
 
 module.exports = {
   isDevelopingAddon: function(){
@@ -15,24 +16,34 @@ module.exports = {
   name: 'd3',
 
   d3Modules: [
-    'd3-path',
-    'd3-shape',
-    'd3-selection',
-    'd3-array',
-    'd3-scale',
-    'd3-interpolate',
-    'd3-color',
-    'd3-format',
-    'd3-time-format',
-    'd3-time',
-    'd3-ease',
-    'd3-collection',
+    // 'd3-path',
+    // 'd3-shape',
+    // 'd3-selection',
+    // 'd3-array',
+    // 'd3-scale',
+    // 'd3-interpolate',
+    // 'd3-color',
+    // 'd3-format',
+    // 'd3-time-format',
+    // 'd3-time',
+    // 'd3-ease',
+    // 'd3-collection',
     // 'd3-transition', // Disabled until this is ported from d3 properly
   ],
 
   included: function(app) {
     this._super.included.apply(this, arguments);
     this.app = app;
+
+    this.d3Modules = [];
+
+    for (var packageName in packageDependencies) {
+      if (packageDependencies.hasOwnProperty(packageName)) {
+        if (/^d3\-/.test(packageName)) {
+          this.d3Modules.push(packageName);
+        }
+      }
+    }
 
     this.d3Modules.forEach(function(packageName) {
       app.import(path.join('vendor', packageName, packageName + '.js'));
