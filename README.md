@@ -1,17 +1,39 @@
 # ember-cli-d3-primitive
 
+![Sample Donut Chart](/screenshots/donut-dummy-app.png?raw=true "Donut Chart")
+
 This addon provides a version of D3 based on the new v4 code branches at https://github.com/d3. 
 
-It's all ES2015 code, so you can import only what you need. Only need a line? `import { line } from 'd3-shape'`.
+It's separate packages, so you can import only what you need without loading the entire `d3.js` as other addons do. 
+
+Example usage:
+
+```js
+import { line } from 'd3-shape';
+import { scaleOrdinal } from 'd3-scale';
+import { extent } from 'd3-array';
+```
 
 ### Included D3 modules:
 
-- [d3-shape](https://github.com/d3/d3-shape)
 - [d3-array](https://github.com/d3/d3-array)
+- [d3-axis](https://github.com/d3/d3-axis)
+- [d3-collection](https://github.com/d3/d3-collection)
+- [d3-color](https://github.com/d3/d3-color)
+- [d3-ease](https://github.com/d3/d3-ease)
+- [d3-format](https://github.com/d3/d3-format)
+- [d3-interpolate](https://github.com/d3/d3-interpolate)
 - [d3-path](https://github.com/d3/d3-path)
+- [d3-scale](https://github.com/d3/d3-scale)
 - [d3-selection](https://github.com/d3/d3-selection)
+- [d3-shape](https://github.com/d3/d3-shape)
+- [d3-time](https://github.com/d3/d3-time)
+- [d3-time-format](https://github.com/d3/d3-time-format)
 
-_This addon will be updated when new releases are cut of these packages._
+_This addon will be updated when new releases are cut of these packages. 
+Currently none of these are 1.0 stable, so some of your code might break by 
+upgrading. It is recommended that you have solid tests in place._
+
 
 ## Installation & Usage
 
@@ -24,7 +46,7 @@ ember install ember-cli-d3-primitive
 Then import what you need from each module:
 
 ```js
-import { cardinal, cardinalClosed } from  'd3-shape';
+import { curveCardinalOpen } from  'd3-shape';
 import { select } from 'd3-selection';
 
 export default Ember.Component.extend({

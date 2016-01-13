@@ -1,8 +1,7 @@
 import { arc, pie } from  'd3-shape';
 import { select } from 'd3-selection';
-import { ordinal } from 'd3-scale';
+import { scaleOrdinal } from 'd3-scale';
 import Ember from 'ember';
-// import layout from './template';
 
 const { computed, run: { scheduleOnce } } = Ember;
 const COLORS = ["#FF9800", "#15CD72", "#8BC34A", "#C62828", "#FF5722", "#03A9F4", "#00BCD4", "#3F51B5"];
@@ -28,7 +27,7 @@ export default Ember.Component.extend({
 
   colorScale: computed('values', function() {
     const values = this.get('values');
-    return ordinal().range(COLORS).domain(values);
+    return scaleOrdinal().range(COLORS).domain(values);
   }),
 
   didInsertElement() {
