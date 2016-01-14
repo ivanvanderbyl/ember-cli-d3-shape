@@ -10,6 +10,22 @@ const concat = require('broccoli-concat');
 var packageDependencies = require("./package.json")['dependencies'];
 var Filter = require('broccoli-filter');
 
+/**
+ * A few things to note here:
+ * 1. This is pretty much the worst.
+ * 2. We should consider some more over engineered approaches, but this *works*.
+ *
+ * Why:
+ * This filter exists simply to define a variable and then remove it to trick
+ * loader.js in to loading this package.
+ *
+ * Ideally:
+ * What we should be doing is just producing a correct package header so this isn't required.
+ * However, to do that we would need to figure out what imports each package has,
+ * then write the header. There might be another approach by providing a custom
+ * module factory, but I haven't looked in to this.
+ */
+
 function UMDToAMDRewriteFilter(inputNode, packageName, options) {
   options = options || {};
   Filter.call(this, inputNode, {
