@@ -4,6 +4,7 @@
 var Funnel = require('broccoli-funnel');
 var mergeTrees = require('broccoli-merge-trees');
 var path = require('path');
+var rename = require('broccoli-stew').rename;
 var esTranspiler = require('broccoli-babel-transpiler');
 const concat = require('broccoli-concat');
 var packageDependencies = require("./package.json")['dependencies'];
@@ -121,24 +122,29 @@ module.exports = {
       if (importFileBaseName === 'index') {
         d3PathToSrc = require.resolve(packageName).replace(/index\.js$/, '');
         srcTree = this.compileSourceTree(path.join(d3PathToSrc), packageName);
+          trees.push(concat(srcTree, {
+          inputFiles: [
+            '**/**/*.js',
+          ],
+          outputFile: '/' + packageName + '/' + packageName + '.js'
+        }));
       }else{
         var packageBuildPath = path.join('build', packageName + '.js');
         d3PathToSrc = require.resolve(packageName).replace(packageBuildPath, '');
         var tree = new Funnel(d3PathToSrc, {
           include: [packageBuildPath],
-          destDir: '/' + packageName + "/",
+          destDir: '/' + packageName,
           annotation: 'Funnel: D3 Source ['+ packageName + ']'
         });
 
         srcTree = new UMDToAMDRewriteFilter(tree, packageName);
+        trees.push(rename(srcTree, function(filepath) {
+          // d3-time-format/build/d3-time-format.js
+          // console.log(filepath);
+          return '/' + packageName + '/' + packageName + '.js';
+        }));
       }
 
-      trees.push(concat(srcTree, {
-        inputFiles: [
-          '**/**/*.js',
-        ],
-        outputFile: '/' + packageName + '/' + packageName + '.js'
-      }));
     });
 
     return mergeTrees(trees);
