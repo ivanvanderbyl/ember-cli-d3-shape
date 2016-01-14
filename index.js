@@ -126,7 +126,7 @@ module.exports = {
         d3PathToSrc = require.resolve(packageName).replace(packageBuildPath, '');
         var tree = new Funnel(d3PathToSrc, {
           include: [packageBuildPath],
-          destDir: '/' + packageName,
+          destDir: '/' + packageName + "/",
           annotation: 'Funnel: D3 Source ['+ packageName + ']'
         });
 
