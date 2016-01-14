@@ -13,7 +13,7 @@ var Filter = require('broccoli-filter');
 function UMDToAMDRewriteFilter(inputNode, packageName, options) {
   options = options || {};
   Filter.call(this, inputNode, {
-    annotation: options.annotation
+    annotation: options.annotation || "Rewriting package: " + packageName,
   });
   this.packageName = packageName;
 }
