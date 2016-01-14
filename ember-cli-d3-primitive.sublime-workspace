@@ -4,6 +4,30 @@
 		"selected_items":
 		[
 			[
+				"create",
+				"createAMDHeader"
+			],
+			[
+				"rel",
+				"relativePath"
+			],
+			[
+				"d3",
+				"d3PathToSrc"
+			],
+			[
+				"src",
+				"srcTree"
+			],
+			[
+				"pack",
+				"packageName"
+			],
+			[
+				"conten",
+				"contentLength"
+			],
+			[
 				"axis",
 				"axisTop"
 			],
@@ -490,43 +514,11 @@
 			[
 				"pr",
 				"property"
-			],
-			[
-				"client",
-				"clientWidth"
-			],
-			[
-				"aggreg",
-				"aggregatedMetricsForLabels"
-			],
-			[
-				"log",
-				"logMessage"
-			],
-			[
-				"line",
-				"lineExit"
-			],
-			[
-				"xDoma",
-				"xDomainExtent"
-			],
-			[
-				"xDm",
-				"xDomainExtent"
 			]
 		]
 	},
 	"buffers":
 	[
-		{
-			"file": "index.js",
-			"settings":
-			{
-				"buffer_size": 3253,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -1093,13 +1085,24 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/ivanvanderbyl/dev/flood/ember-cli-d3"
+		"/Users/ivanvanderbyl/dev/flood/ember-cli-d3",
+		"/Users/ivanvanderbyl/dev/flood/ember-cli-d3/tests",
+		"/Users/ivanvanderbyl/dev/flood/ember-cli-d3/tests/dummy"
 	],
 	"file_history":
 	[
+		"/Users/ivanvanderbyl/dev/flood/ember-cli-d3/node_modules/d3-color/build/d3-color.js",
+		"/Users/ivanvanderbyl/dev/flood/ember-cli-d3/tests/dummy/app/components/d3-donut/component.js",
+		"/Users/ivanvanderbyl/dev/flood/ember-cli-d3/tests/dummy/app/components/d3-donut/template.hbs",
 		"/Users/ivanvanderbyl/dev/flood/ember-cli-d3/index.js",
 		"/Users/ivanvanderbyl/dev/flood/ember-cli-d3/package.json",
+		"/Users/ivanvanderbyl/dev/flood/ember-cli-d3/tests/index.html",
+		"/Users/ivanvanderbyl/dev/flood/ember-cli-d3/tests/test-helper.js",
+		"/Users/ivanvanderbyl/dev/flood/ember-cli-d3/bower.json",
+		"/Users/ivanvanderbyl/dev/flood/ember-cli-d3/.travis.yml",
+		"/Users/ivanvanderbyl/dev/flood/ember-cli-d3/node_modules/d3-time-format/build/d3-time-format.js",
 		"/Users/ivanvanderbyl/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/ivanvanderbyl/dev/flood/ember-cli-d3/ember-cli-d3-primitive.sublime-project",
 		"/Users/ivanvanderbyl/dev/flood/ember-cli-d3/node_modules/broccoli-kitchen-sink-helpers/index.js",
 		"/Users/ivanvanderbyl/dev/flood/flood-dashboard/app/components/timeline-axis/template.hbs",
 		"/Users/ivanvanderbyl/dev/flood/flood-dashboard/app/styles/components/flood-primary-chart.scss",
@@ -1215,16 +1218,7 @@
 		"/Users/ivanvanderbyl/dev/flood/flood-dashboard/app/components/flood-navigation-chart/component.js",
 		"/Users/ivanvanderbyl/dev/flood/flood-dashboard/tests/unit/components/flood-navigation-chart-test.js",
 		"/Users/ivanvanderbyl/dev/flood/flood-dashboard/node_modules/d3-color/build/d3-color.js",
-		"/Users/ivanvanderbyl/dev/flood/flood-dashboard/app/transitions.js",
-		"/Users/ivanvanderbyl/dev/flood/flood-dashboard/tests/unit/utils/series-test.js",
-		"/Users/ivanvanderbyl/dev/flood/flood-dashboard/app/utils/aggregate-series.js",
-		"/Users/ivanvanderbyl/dev/flood/flood-dashboard/tests/integration/components/flood-navigation-chart/component-test.js",
-		"/Users/ivanvanderbyl/dev/flood/flood-dashboard/app/templates/floods/flood-bar-navigation.hbs",
-		"/Users/ivanvanderbyl/dev/flood/flood-dashboard/app/components/flood-navigation-chart/template.hbs",
-		"/Users/ivanvanderbyl/dev/flood/flood-dashboard/app/models/grid.js",
-		"/Users/ivanvanderbyl/dev/flood/flood-dashboard/tests/unit/models/grid-test.js",
-		"/Users/ivanvanderbyl/dev/flood/flood-dashboard/tests/unit/routes/floods/flood/logs-test.js",
-		"/Users/ivanvanderbyl/Library/Application Support/Sublime Text 3/Packages/GoSublime/USAGE.md"
+		"/Users/ivanvanderbyl/dev/flood/flood-dashboard/app/transitions.js"
 	],
 	"find":
 	{
@@ -1370,6 +1364,17 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"ember-cli-qunit",
+			"tests.js",
+			"ember-qunit",
+			"amd",
+			"UMDToAMDRewriteFilter",
+			"concat",
+			"d3PathToSrc",
+			"filter",
+			"function (exports)",
+			"Awk",
+			"filter",
 			"glob",
 			"broccoli-kitchen-sink-helpers",
 			"d3-selection",
@@ -1486,18 +1491,7 @@
 			"timeSelection",
 			"extent",
 			"floodDataPoints",
-			"focussedMetrics",
-			"selectedMetrics",
-			"timeSelection",
-			"floodController",
-			"totalLabels",
-			"transactionRows",
-			"createAppRange",
-			"app/range",
-			"router",
-			"routes",
-			"_subscribeToFloodUpdates",
-			"phan"
+			"focussedMetrics"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1643,42 +1637,8 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "index.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3253,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								432,
-								432
-							]
-						],
-						"settings":
-						{
-							"editorconfig": true,
-							"ensure_newline_at_eof_on_save": true,
-							"syntax": "Packages/Babel/JavaScript (Babel).tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true,
-							"trim_trailing_white_space_on_save": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -1799,12 +1759,28 @@
 				"package.json"
 			],
 			[
-				"node_modules/broccoli-kitchen-sink-helpers/index.js",
-				"node_modules/broccoli-kitchen-sink-helpers/index.js"
+				"donut",
+				"tests/dummy/app/components/d3-donut/component.js"
 			],
 			[
 				"index",
 				"index.js"
+			],
+			[
+				"testhelper",
+				"tests/test-helper.js"
+			],
+			[
+				"bower",
+				"bower.json"
+			],
+			[
+				"try",
+				".travis.yml"
+			],
+			[
+				"node_modules/broccoli-kitchen-sink-helpers/index.js",
+				"node_modules/broccoli-kitchen-sink-helpers/index.js"
 			],
 			[
 				"timlineaxishbs",
@@ -2289,22 +2265,6 @@
 			[
 				"metritemhs",
 				"app/components/metric-item/template.hbs"
-			],
-			[
-				"metriccompo",
-				"app/components/metric-selector/component.js"
-			],
-			[
-				"metriccss",
-				"app/styles/components/metric-selector.scss"
-			],
-			[
-				"metric-item",
-				"app/components/metric-item/component.js"
-			],
-			[
-				"metrichbs",
-				"app/components/metric-selector/template.hbs"
 			]
 		],
 		"width": 0.0
