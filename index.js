@@ -29,6 +29,7 @@ UMDToAMDRewriteFilter.prototype.processString = function(content) {
   var lines = content.split(/\n/);
   var header = createAMDHeader();
   lines.splice(1, 0, header);
+  lines.splice(5, 0, "  delete define.amd;");
   return lines.join("\n");
 };
 
