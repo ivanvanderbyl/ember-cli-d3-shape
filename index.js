@@ -22,7 +22,7 @@ UMDToAMDRewriteFilter.prototype.constructor = UMDToAMDRewriteFilter;
 
 function createAMDHeader() {
   return "  // ember-cli-d3-primitive: Insert a fake AMD definition so that Ember's loader.js loads this UMD build.\n" +
-         "  define.amd = true";
+         "  define.amd = true;";
 }
 
 UMDToAMDRewriteFilter.prototype.processString = function(content) {
