@@ -47,6 +47,7 @@
   "dependencies": {
     "broccoli-babel-transpiler": "^5.5.0",
     "broccoli-concat": "0.0.13",
+    "broccoli-filter": "^1.2.3",
     "broccoli-funnel": "^1.0.1",
     "broccoli-merge-trees": "^1.1.1",
     "broccoli-persistent-filter": "^1.1.6",
