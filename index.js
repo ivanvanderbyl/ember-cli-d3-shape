@@ -81,6 +81,16 @@ module.exports = {
     });
   },
 
+  /**
+   * Compiles ES6 sources to ES5 AMD packages for Ember to load.
+   *
+   * This is used when one of the D3 sources is pegged at the github repo.
+   *
+   * @param  {String} src         Package src directory
+   * @param  {String} packageName Package Name
+   *
+   * @return {Node}               Broccoli tree
+   */
   compileSourceTree: function(src, packageName) {
     var srcTree = new Funnel(src, {
       include: ['src/**/*.js', 'index.js'],
@@ -136,6 +146,7 @@ module.exports = {
       var d3PathToSrc, srcTree;
 
       if (importFileBaseName === 'index') {
+        // Import ES6 source code.
         d3PathToSrc = require.resolve(packageName).replace(/index\.js$/, '');
         srcTree = this.compileSourceTree(path.join(d3PathToSrc), packageName);
           trees.push(concat(srcTree, {
@@ -145,6 +156,7 @@ module.exports = {
           outputFile: '/' + packageName + '/' + packageName + '.js'
         }));
       }else{
+        // Import existing builds from node d3 packages, which are UMD packaged.
         var packageBuildPath = path.join('build', packageName + '.js');
         d3PathToSrc = require.resolve(packageName).replace(packageBuildPath, '');
         var tree = new Funnel(d3PathToSrc, {
@@ -154,9 +166,7 @@ module.exports = {
         });
 
         srcTree = new UMDToAMDRewriteFilter(tree, packageName);
-        trees.push(rename(srcTree, function(filepath) {
-          // d3-time-format/build/d3-time-format.js
-          // console.log(filepath);
+        trees.push(rename(srcTree, function() {
           return '/' + packageName + '/' + packageName + '.js';
         }));
       }
