@@ -8,47 +8,7 @@ var rename = require('broccoli-stew').rename;
 var esTranspiler = require('broccoli-babel-transpiler');
 const concat = require('broccoli-concat');
 var packageDependencies = require("./package.json")['dependencies'];
-var Filter = require('broccoli-filter');
-
-/**
- * A few things to note here:
- * 1. This is pretty much the worst.
- * 2. We should consider some more over engineered approaches, but this *works*.
- *
- * Why:
- * This filter exists simply to define a variable and then remove it to trick
- * loader.js in to loading this package.
- *
- * Ideally:
- * What we should be doing is just producing a correct package header so this isn't required.
- * However, to do that we would need to figure out what imports each package has,
- * then write the header. There might be another approach by providing a custom
- * module factory, but I haven't looked in to this.
- */
-
-function UMDToAMDRewriteFilter(inputNode, packageName, options) {
-  options = options || {};
-  Filter.call(this, inputNode, {
-    annotation: options.annotation || "Rewriting package: " + packageName,
-  });
-  this.packageName = packageName;
-}
-
-UMDToAMDRewriteFilter.prototype = Object.create(Filter.prototype);
-UMDToAMDRewriteFilter.prototype.constructor = UMDToAMDRewriteFilter;
-
-function createAMDHeader() {
-  return "  // ember-cli-d3-primitive: Insert a fake AMD definition so that Ember's loader.js loads this UMD build.\n" +
-         "  define.amd = true;";
-}
-
-UMDToAMDRewriteFilter.prototype.processString = function(content) {
-  var lines = content.split(/\n/);
-  var header = createAMDHeader();
-  lines.splice(1, 0, header);
-  lines.splice(5, 0, "  delete define.amd;");
-  return lines.join("\n");
-};
+var AMDDefineFilter = require('./lib/amd-define-filter');
 
 module.exports = {
   isDevelopingAddon: function(){
@@ -59,7 +19,6 @@ module.exports = {
 
   d3Modules: [
     // Imported from package.json
-    // 'd3-transition', // Disabled until this is ported from d3 properly
   ],
 
   included: function(app) {
@@ -165,7 +124,7 @@ module.exports = {
           annotation: 'Funnel: D3 Source ['+ packageName + ']'
         });
 
-        srcTree = new UMDToAMDRewriteFilter(tree, packageName);
+        srcTree = new AMDDefineFilter(tree, packageName);
         trees.push(rename(srcTree, function() {
           return '/' + packageName + '/' + packageName + '.js';
         }));
