@@ -1,10 +1,12 @@
 import { arc, pie } from  'd3-shape';
 import { select } from 'd3-selection';
 import { scaleOrdinal } from 'd3-scale';
+import { transition } from 'd3-transition';
+import { interpolate as d3Interpolate } from 'd3-interpolate';
 import Ember from 'ember';
 
 const { computed, run: { scheduleOnce } } = Ember;
-const COLORS = ["#FF9800", "#15CD72", "#8BC34A", "#C62828", "#FF5722", "#03A9F4", "#00BCD4", "#3F51B5"];
+const COLORS = ["#FF9800", "#03A9F4", "#15CD72", "#8BC34A", "#C62828", "#FF5722", "#00BCD4", "#3F51B5"];
 
 export default Ember.Component.extend({
   tagName: 'g',
@@ -25,7 +27,7 @@ export default Ember.Component.extend({
       .outerRadius(this.get('outerRadius'));
   },
 
-  colorScale: computed('values', function() {
+  colorScale: computed('values.[]', function() {
     const values = this.get('values');
     return scaleOrdinal().range(COLORS).domain(values);
   }),
@@ -49,13 +51,23 @@ export default Ember.Component.extend({
     const arc = this.arcFn();
     const colorScale = this.get('colorScale');
 
+    function arcTween(a) {
+      delete a.index;
+      let i = d3Interpolate(this._current, a);
+      this._current = i(0);
+      return function(t) {
+        return arc(i(t));
+      };
+    }
+
     let plot = this.plot;
 
-    let join = plot.selectAll("path").data(values);
-      join.enter().append("path").attr('fill', colorScale);
-      join.exit().select('path').remove();
-    join.data(arcs).attr("d", (d) => {
-      return arc(d);
-    });
+    let join = plot.selectAll("path").data(arcs);
+    join.enter().append("path")
+      .attr('fill', (d) => colorScale(d.index))
+      .attr("d", arc)
+      .each((d) => { this._current = d; });
+    join.exit().select('path').remove();
+    join.transition('test').duration(500).attrTween("d", arcTween);
   }
 });

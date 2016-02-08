@@ -7,7 +7,7 @@ const { computed } = Ember;
 export default Ember.Component.extend({
   layout: layout,
 
-  values: [1, 1, 2, 3, 5, 8, 13, 21],
+  values: [1, 2,3,4],
 
   width: 400,
   height: 400,
