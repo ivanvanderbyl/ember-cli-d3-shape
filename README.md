@@ -1,12 +1,14 @@
-# ember-cli-d3-primitive
+# ember-cli-d3-shape
 
 ![Sample Donut Chart](/screenshots/donut-dummy-app.png?raw=true "Donut Chart")
 
-This addon provides a version of D3 based on the new v4 code branches at https://github.com/d3. 
+D3 Shape is a set of primitives for building complex data visualisations. Because
+it depends on all the other components of D3, this package also provides all other
+D3 `v4.0` packages (see below for a list).
 
-Each package is compiled and importable as per the D3 documentation for each package. 
+Each package is importable as per the D3 documentation for each package. 
 This also means that you don't need to import the entire `d3.js` build into your App if you
-only need a function or two. Check out [d3-array](https://github.com/d3/d3-array) for
+only need a function or two. For example, check out [d3-array](https://github.com/d3/d3-array) for
 an extensive library of useful Array functions not natively found in Javascript.
 
 Example usage:
@@ -49,14 +51,14 @@ _This addon will be updated when new releases are cut of these packages.
 Currently none of these are 1.0 stable, so some of your code might break by 
 upgrading. It is recommended that you have solid tests in place._
 
-[![Build Status](https://travis-ci.org/ivanvanderbyl/ember-cli-d3-primitive.svg)](https://travis-ci.org/ivanvanderbyl/ember-cli-d3-primitive)
+[![Build Status](https://travis-ci.org/ivanvanderbyl/ember-cli-d3-shape.svg)](https://travis-ci.org/ivanvanderbyl/ember-cli-d3-shape)
 
 ## Installation & Usage
 
 Install this like any other Ember Addon:
 
 ```bash
-ember install ember-cli-d3-primitive
+ember install ember-cli-d3-shape
 ```
 
 Then import what you need from each module:
