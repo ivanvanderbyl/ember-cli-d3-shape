@@ -6,9 +6,15 @@ var mergeTrees = require('broccoli-merge-trees');
 var path = require('path');
 var rename = require('broccoli-stew').rename;
 var esTranspiler = require('broccoli-babel-transpiler');
-const concat = require('broccoli-concat');
+var concat = require('broccoli-concat');
 var packageDependencies = require("./package.json")['dependencies'];
 var AMDDefineFilter = require('./lib/amd-define-filter');
+var fs = require('fs');
+
+function lookupPackage(packageName) {
+  var modulePath = require.resolve(packageName);
+  return modulePath.split('/build/', 2)[0];
+}
 
 module.exports = {
   isDevelopingAddon: function(){
@@ -117,7 +123,13 @@ module.exports = {
       }else{
         // Import existing builds from node d3 packages, which are UMD packaged.
         var packageBuildPath = path.join('build', packageName + '.js');
-        d3PathToSrc = require.resolve(packageName).replace(packageBuildPath, '');
+        d3PathToSrc = lookupPackage(packageName);
+
+        if (!fs.statSync(path.join(d3PathToSrc, packageBuildPath)).isFile()) {
+          console.error("[ERROR] D3 Package (" + packageName + ") is not built as expected, cannot continue. Please report this as a bug.");
+          return;
+        }
+
         var tree = new Funnel(d3PathToSrc, {
           include: [packageBuildPath],
           destDir: '/' + packageName,
