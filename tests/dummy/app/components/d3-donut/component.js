@@ -1,6 +1,7 @@
 import { arc, pie } from  'd3-shape';
 import { select } from 'd3-selection';
 import { scaleOrdinal } from 'd3-scale';
+/* exported transition */
 import { transition } from 'd3-transition';
 import { interpolate as d3Interpolate } from 'd3-interpolate';
 import Ember from 'ember';
