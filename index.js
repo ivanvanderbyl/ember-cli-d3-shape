@@ -17,11 +17,11 @@ function lookupPackage(packageName) {
 }
 
 module.exports = {
-  isDevelopingAddon: function(){
-    return true;
-  },
+  // isDevelopingAddon: function(){
+  //   return true;
+  // },
 
-  name: 'd3',
+  name: 'ember-cli-d3-shape',
 
   d3Modules: [
     // Imported from package.json
