@@ -1,24 +1,24 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+import Ember from 'ember';
 
 moduleForComponent('primitive-symbol', 'Integration | Component | primitive symbol', {
   integration: true
 });
 
-test('it renders', function(assert) {
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });"
+test('it renders a diamond', function(assert) {
+  this.render(hbs`{{primitive-symbol type="diamond" size="48"}}`);
+  assert.equal(this.$("path").attr('d'), 'M0,-12.894839181882503L7.4448388728167965,0L0,12.894839181882503L-7.4448388728167965,0Z');
+  assert.ok(Ember.A(this.$("path").attr('class').split(' ')).contains('diamond'), 'has diamond class');
+  assert.ok(Ember.A(this.$("path").attr('class').split(' ')).contains('symbol'), 'has symbol class');
+});
 
-  this.render(hbs`{{primitive-symbol}}`);
+test('positioning', function(assert) {
+  this.render(hbs`{{primitive-symbol type="diamond" size="48" left="24" top="100"}}`);
+  assert.equal(this.$("path").attr('transform'), 'translate(24,100)');
+});
 
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:"
-  this.render(hbs`
-    {{#primitive-symbol}}
-      template block text
-    {{/primitive-symbol}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+test('color', function(assert) {
+  this.render(hbs`{{primitive-symbol color="red"}}`);
+  assert.equal(this.$("path.symbol").attr('d'), 'M0,-12.894839181882503L7.4448388728167965,0L0,12.894839181882503L-7.4448388728167965,0Z');
 });
