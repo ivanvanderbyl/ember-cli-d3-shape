@@ -13,7 +13,8 @@ var fs = require('fs');
 
 function lookupPackage(packageName) {
   var modulePath = require.resolve(packageName);
-  return modulePath.split('/build/', 2)[0];
+  var i = modulePath.lastIndexOf('/build');
+  return modulePath.slice(0, i);
 }
 
 module.exports = {
