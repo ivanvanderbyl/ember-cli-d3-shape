@@ -18,7 +18,9 @@ test('positioning', function(assert) {
   assert.equal(this.$("path").attr('transform'), 'translate(24,100)');
 });
 
-test('color', function(assert) {
-  this.render(hbs`{{primitive-symbol color="red"}}`);
-  assert.equal(this.$("path.symbol").attr('d'), 'M0,-12.894839181882503L7.4448388728167965,0L0,12.894839181882503L-7.4448388728167965,0Z');
+test('fill, stroke, and stroke-width', function(assert) {
+  this.render(hbs`{{primitive-symbol fill="red" stroke="black" strokeWidth="2"}}`);
+  assert.equal(this.$("path.symbol").attr('fill'), 'red');
+  assert.equal(this.$("path.symbol").attr('stroke'), 'black');
+  assert.equal(this.$("path.symbol").attr('stroke-width'), '2');
 });
