@@ -16,6 +16,7 @@ const {
   computed,
   assert,
   isPresent,
+  typeOf,
 } = Ember;
 
 export default Ember.Component.extend({
@@ -34,6 +35,8 @@ export default Ember.Component.extend({
 
   /**
    * Symbol to render
+   *
+   * Can either be a string or a symbol function.
    *
    * @type {String}
    */
@@ -72,22 +75,26 @@ export default Ember.Component.extend({
   symbolData: computed('size', 'type', {
     get() {
       const {size, type} = this.getProperties('size', 'type');
+      let data;
 
-      const data = {
-        'circle': symbolCircle,
-        'diamond': symbolDiamond,
-        'cross': symbolCross,
-        'square': symbolSquare,
-        'star': symbolStar,
-        'triangle': symbolTriangle,
-        'wye': symbolWye,
-      }[type];
-
-      assert(`Not a valid symbol type "${type}"`, isPresent(data));
+      if (typeOf(type) !== 'string') {
+        data = type;
+      }else{
+        data = {
+          'circle': symbolCircle,
+          'diamond': symbolDiamond,
+          'cross': symbolCross,
+          'square': symbolSquare,
+          'star': symbolStar,
+          'triangle': symbolTriangle,
+          'wye': symbolWye,
+        }[type];
+        assert(`Not a valid symbol type "${type}"`, isPresent(data));
+      }
 
       const fn = symbol();
       fn.type(data);
-      fn.size(size * 4);
+      fn.size(size);
 
       return fn();
     }
