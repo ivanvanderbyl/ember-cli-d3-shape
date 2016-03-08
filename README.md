@@ -121,8 +121,11 @@ export default Ember.Component.extend(Area, {
   },
 
   didRender() {
-    const { top, left} = this.get('area');
-    this.plot.select('rect.backrgound').attr('transform', `translate(${left},${top})`);
+    const { top, left, width, height } = this.get('area');
+    this.plot.select('rect.backrgound')
+      .attr('transform', `translate(${left},${top})`)
+      .attr('width', width)
+      .attr('height', height);
   }
 });
 ```
