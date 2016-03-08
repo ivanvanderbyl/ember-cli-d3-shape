@@ -70,7 +70,12 @@ import { select } from 'd3-selection';
 
 export default Ember.Component.extend({
   didInsertElement() {
-    this.chart = select(this.element.querySelector('svg'));
+    this.plot = select(this.element.querySelector('svg'));
+  },
+
+  didRender() {
+    // NOTE: Do things with the DOM after it has rendered.
+    this.plot.append('rect').attr('fill', '#15CD72');
   }
 });
 ```
