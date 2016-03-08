@@ -52,6 +52,7 @@ Currently none of these are 1.0 stable, so some of your code might break by
 upgrading. It is recommended that you have solid tests in place._
 
 [![Build Status](https://travis-ci.org/ivanvanderbyl/ember-cli-d3-shape.svg)](https://travis-ci.org/ivanvanderbyl/ember-cli-d3-shape)
+[![Ember Observer Score](http://emberobserver.com/badges/ember-cli-d3-shape.svg)](http://emberobserver.com/addons/ember-cli-d3-shape)
 
 ## Installation & Usage
 
