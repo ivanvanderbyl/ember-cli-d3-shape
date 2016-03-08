@@ -23,7 +23,7 @@ export default Ember.Mixin.create({
    *
    * @return {Object}
    */
-  rect: computed('width', 'height', 'margin', {
+  area: computed('width', 'height', 'margin', {
     get() {
       let height = this.get('height'),
         width = this.get('width'),

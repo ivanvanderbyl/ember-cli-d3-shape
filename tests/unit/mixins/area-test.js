@@ -19,12 +19,12 @@ test('computes the margin attributes from w/h and margin', function(assert) {
   });
 
   let subject = AreaObject.create();
-  assert.equal(subject.get('rect.top'), 24, 'rect.top');
-  assert.equal(subject.get('rect.bottom'), 488, 'rect.bottom');
-  assert.equal(subject.get('rect.left'), 0, 'rect.left');
-  assert.equal(subject.get('rect.right'), 1000, 'rect.right');
-  assert.equal(subject.get('rect.height'), 478, 'rect.height');
-  assert.equal(subject.get('rect.width'), 1000, 'rect.width');
+  assert.equal(subject.get('area.top'), 24, 'area.top');
+  assert.equal(subject.get('area.bottom'), 488, 'area.bottom');
+  assert.equal(subject.get('area.left'), 0, 'area.left');
+  assert.equal(subject.get('area.right'), 1000, 'area.right');
+  assert.equal(subject.get('area.height'), 478, 'area.height');
+  assert.equal(subject.get('area.width'), 1000, 'area.width');
 });
 
 test('uses zero for undefined values', function(assert) {
@@ -39,8 +39,8 @@ let AreaObject = Ember.Object.extend(AreaMixin, {
   });
 
   let subject = AreaObject.create();
-  assert.equal(subject.get('rect.top'), 0, 'rect.top');
-  assert.equal(subject.get('rect.bottom'), 512, 'rect.bottom');
-  assert.equal(subject.get('rect.left'), 24, 'rect.left');
-  assert.equal(subject.get('rect.right'), 1024, 'rect.right');
+  assert.equal(subject.get('area.top'), 0, 'area.top');
+  assert.equal(subject.get('area.bottom'), 512, 'area.bottom');
+  assert.equal(subject.get('area.left'), 24, 'area.left');
+  assert.equal(subject.get('area.right'), 1024, 'area.right');
 });

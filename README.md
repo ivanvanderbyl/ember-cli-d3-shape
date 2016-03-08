@@ -102,6 +102,31 @@ on the shape.
 - `top`: Top offset (applied using transform).
 - `left`: Left offset (applied using transform).
 
+# Mixins
+
+### `area`
+
+Provides a useful computed `area` property for calculating margin and returning
+SVG ready units.
+
+#### Usage
+
+```js
+import Area from 'ember-cli-d3-shape/mixins/area';
+export default Ember.Component.extend(Area, {
+  margin: {
+    top: 24,
+    left: 24,
+    right: 24,
+  },
+
+  didRender() {
+    const { top, left} = this.get('area');
+    this.plot.select('rect.backrgound').attr('transform', `translate(${left},${top})`);
+  }
+});
+```
+
 ## Running
 
 * `ember server`
