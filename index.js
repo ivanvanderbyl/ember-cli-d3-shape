@@ -108,7 +108,7 @@ module.exports = {
     if (tree) { trees.push(tree); }
 
     this.d3Modules.forEach(function(packageName) {
-      let importFileBaseName = path.parse(require.resolve(packageName)).name;
+      var importFileBaseName = path.parse(require.resolve(packageName)).name;
       var d3PathToSrc, srcTree;
 
       if (importFileBaseName === 'index') {
