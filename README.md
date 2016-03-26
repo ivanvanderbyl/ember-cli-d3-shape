@@ -7,7 +7,7 @@ it depends on all the other components of D3, this package also provides all oth
 D3 `v4.0` packages (see below for a list). 
 
 This addon is essentially a shim, if you're looking for a more solid graphic addon,
-check out [maximum-plaid](/ivanvanderbyl/maximum-plaid).
+check out [maximum-plaid](https://github.com/ivanvanderbyl/maximum-plaid).
 
 Each package is importable as per the D3 documentation for each package. 
 This also means that you don't need to import the entire `d3.js` build into your App if you
