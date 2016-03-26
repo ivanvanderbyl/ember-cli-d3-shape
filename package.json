@@ -75,6 +75,7 @@
     "d3-transition": "0.2.8",
     "d3-voronoi": "0.3.2",
     "recast": "^0.11.0",
+    "ember-cli-htmlbars": "^1.0.3",
     "ember-cli-babel": "^5.1.5"
   },
   "ember-addon": {
