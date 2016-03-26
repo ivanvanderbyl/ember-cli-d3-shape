@@ -18,9 +18,9 @@ function lookupPackage(packageName) {
 }
 
 module.exports = {
-  // isDevelopingAddon: function(){
-  //   return true;
-  // },
+  isDevelopingAddon: function(){
+    return true;
+  },
 
   name: 'ember-cli-d3-shape',
 

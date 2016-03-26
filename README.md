@@ -80,56 +80,6 @@ export default Ember.Component.extend({
 });
 ```
 
-# Components
-
-### `primitive-symbol`
-
-Provides an easy to use and straight forward interface to `d3-shape`'s symbol 
-generators. `primitive-symbol` can be used in the same way as any Ember component
-and will  render as a `<path>` tag containing the path data for the specified
-symbol type.
-
-#### Options
-
-- `type`: Symbol to render, can be any of `circle`, `diamond`, `cross`, 
-`square`, `star`, `triangle`, `wye`.
-- `size`: Specifies the symbol render size. This is the area of the
-symbol, which typicall equates to 1/4th of the actual width or height, depending
-on the shape.
-- `fill`: SVG path `fill`  property.
-- `stroke`: SVG path `stroke` property.
-- `strokeWidth`: SVG path `stroke-width` property.
-- `top`: Top offset (applied using transform).
-- `left`: Left offset (applied using transform).
-
-# Mixins
-
-### `area`
-
-Provides a useful computed `area` property for calculating margin and returning
-SVG ready units.
-
-#### Usage
-
-```js
-import Area from 'ember-cli-d3-shape/mixins/area';
-export default Ember.Component.extend(Area, {
-  margin: {
-    top: 24,
-    left: 24,
-    right: 24,
-  },
-
-  didRender() {
-    const { top, left, width, height } = this.get('area');
-    this.plot.select('rect.backrgound')
-      .attr('transform', `translate(${left},${top})`)
-      .attr('width', width)
-      .attr('height', height);
-  }
-});
-```
-
 ## Running
 
 * `ember server`
