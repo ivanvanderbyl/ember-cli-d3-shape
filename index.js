@@ -28,6 +28,12 @@ module.exports = {
 
   included: function(app) {
     this._super.included.apply(this, arguments);
+
+    // Support being a nested addon.
+    if (typeof app.import !== 'function' && app.app) {
+      app = app.app;
+    }
+
     this.app = app;
 
     this.d3Modules = [];
