@@ -1,6 +1,11 @@
 # ember-cli-d3-shape Changelog
 
-### 0.8.1 (May 16, 2016)
+### 0.8.4 (May 16, 2016)
+
+- Corrected version number on changelog
+- Added tests for module loading
+
+### 0.8.2 (May 16, 2016)
 
 - Updated D3 packages to match 4.0.0-alpha.40:
   - d3-axis 0.3.0 => 0.3.1
