@@ -22,7 +22,7 @@ import { select } from 'd3-selection';
 import { line } from 'd3-shape';
 import { timeDay } from 'd3-time';
 import { timeFormat } from 'd3-time-format';
-import { now, timeout } from 'd3-timer';
+import { timeout } from 'd3-timer';
 import { transition } from 'd3-transition';
 import { voronoi } from 'd3-voronoi';
 
@@ -138,18 +138,18 @@ test("loading d3-selection", function(assert) {
 
 test("loading d3-shape", function(assert) {
   let l = line();
-  l.x((d) => d.date);
-  l.y((d) => d.value);
+  l.x((d) => d.x);
+  l.y((d) => d.y);
   let data = [
-    {date: new Date(2007, 3, 24), value: 93.24},
-    {date: new Date(2007, 3, 25), value: 95.35},
-    {date: new Date(2007, 3, 26), value: 98.84},
-    {date: new Date(2007, 3, 27), value: 99.92},
-    {date: new Date(2007, 3, 30), value: 99.80},
-    {date: new Date(2007, 4,  1), value: 99.47},
+    {x: 1, y: 93.24},
+    {x: 2, y: 95.35},
+    {x: 3, y: 98.84},
+    {x: 4, y: 99.92},
+    {x: 5, y: 99.80},
+    {x: 6, y: 99.47},
   ];
 
-  assert.equal(l(data), 'M1177336800000,93.24L1177423200000,95.35L1177509600000,98.84L1177596000000,99.92L1177855200000,99.8L1177941600000,99.47', 'loaded shape');
+  assert.equal(l(data), 'M1,93.24L2,95.35L3,98.84L4,99.92L5,99.8L6,99.47', 'loaded shape');
 });
 
 test("loading d3-time", function(assert) {
@@ -165,10 +165,9 @@ test("loading d3-time-format", function(assert) {
 
 test("loading d3-timer", function(assert) {
   let done = assert.async();
-  let then = now(), delay = 50;
-  timeout(function() {
-    assert.ok(now() - then > (delay - 50), 'loaded timer');
-    assert.ok(now() - then < (delay + 50), 'delay is less than timeout + 30');
+  let delay = 50;
+  timeout(function(elapsed) {
+    assert.equal(elapsed > delay, true, 'loaded timer');
     done();
   }, delay);
 });
