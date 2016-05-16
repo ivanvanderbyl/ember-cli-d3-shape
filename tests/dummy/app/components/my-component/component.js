@@ -7,14 +7,14 @@ import Dimensions from 'ember-cli-d3-shape/mixins/dimensions';
 const { computed } = Ember;
 
 export default Ember.Component.extend(Area, Dimensions, {
-  layout: layout,
+  layout,
 
   classNames: ['my-visualisation'],
 
   values: [1, 2, 3, 4],
 
   margin: {
-    top: 100, left: 100, right: 100, bottom: 100,
+    top: 100, left: 100, right: 100, bottom: 100
   },
 
   outerRadius: computed('area.width', {
@@ -38,9 +38,11 @@ export default Ember.Component.extend(Area, Dimensions, {
   },
 
   setupPlot() {
-    if (!this.element) { return; }
+    if (!this.element) {
+      return;
+    }
 
     this.plot.select('g')
       .attr('transform', `translate(${ this.get('width') / 2 }, ${ this.get('height') / 2 })`);
-  },
+  }
 });

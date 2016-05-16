@@ -7,7 +7,7 @@ import { interpolate as d3Interpolate } from 'd3-interpolate';
 import Ember from 'ember';
 
 const { computed, run: { scheduleOnce } } = Ember;
-const COLORS = ["#FF9800", "#03A9F4", "#15CD72", "#8BC34A", "#C62828", "#FF5722", "#00BCD4", "#3F51B5"];
+const COLORS = ['#FF9800', '#03A9F4', '#15CD72', '#8BC34A', '#C62828', '#FF5722', '#00BCD4', '#3F51B5'];
 
 export default Ember.Component.extend({
   tagName: 'g',
@@ -15,13 +15,13 @@ export default Ember.Component.extend({
   classNames: ['d3-donut'],
 
   outerRadius: 200,
-  innerRadius: 200-32,
+  innerRadius: 200 - 32,
 
-  pieFn: function() {
-    return pie().padAngle(5/360);
+  pieFn() {
+    return pie().padAngle(5 / 360);
   },
 
-  arcFn: function() {
+  arcFn() {
     return arc()
       .cornerRadius(8)
       .innerRadius(this.get('innerRadius'))
@@ -29,7 +29,7 @@ export default Ember.Component.extend({
   },
 
   colorScale: computed('values.[]', function() {
-    const values = this.get('values');
+    let values = this.get('values');
     return scaleOrdinal().range(COLORS).domain(values);
   }),
 
@@ -47,10 +47,10 @@ export default Ember.Component.extend({
   },
 
   draw() {
-    const values = this.get('values');
-    const arcs = this.pieFn()(values);
-    const arc = this.arcFn();
-    const colorScale = this.get('colorScale');
+    let values = this.get('values');
+    let arcs = this.pieFn()(values);
+    let arc = this.arcFn();
+    let colorScale = this.get('colorScale');
 
     function arcTween(a) {
       delete a.index;
@@ -61,14 +61,16 @@ export default Ember.Component.extend({
       };
     }
 
-    let plot = this.plot;
+    let { plot } = this;
 
-    let join = plot.selectAll("path").data(arcs);
-    join.enter().append("path")
+    let join = plot.selectAll('path').data(arcs);
+    join.enter().append('path')
       .attr('fill', (d) => colorScale(d.index))
-      .attr("d", arc)
-      .each((d) => { this._current = d; });
+      .attr('d', arc)
+      .each((d) => {
+        this._current = d;
+      });
     join.exit().select('path').remove();
-    join.transition('test').duration(500).attrTween("d", arcTween);
+    join.transition('test').duration(500).attrTween('d', arcTween);
   }
 });
