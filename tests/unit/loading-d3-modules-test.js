@@ -164,10 +164,11 @@ test("loading d3-time-format", function(assert) {
 });
 
 test("loading d3-timer", function(assert) {
+  assert.expect(1);
   let done = assert.async();
   let delay = 50;
-  timeout(function(elapsed) {
-    assert.equal(elapsed > delay, true, 'loaded timer');
+  timeout(function() {
+    assert.ok(true, 'loaded timer');
     done();
   }, delay);
 });
