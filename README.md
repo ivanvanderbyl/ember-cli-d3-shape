@@ -1,12 +1,14 @@
 # ember-cli-d3-shape
 
-![Sample Donut Chart](/screenshots/donut-dummy-app.png?raw=true "Donut Chart")
+`ember-cli-d3-shape` is a shim for D3 v4, loaded from NPM as ES6 modules. It includes `d3-shape` and all version 4 modules in D3 `4.0.0-alpha.40+`.
+
+---
 
 D3 Shape is a set of primitives for building complex data visualisations. Because
 it depends on all the other components of D3, this package also provides all other
 D3 `v4.0` packages (see below for a list). 
 
-This addon is essentially a shim, if you're looking for a more solid graphic addon,
+This addon is just a shim, if you're looking for a more high level visualisation addon,
 check out [maximum-plaid](https://github.com/ivanvanderbyl/maximum-plaid).
 
 Each package is importable as per the D3 documentation for each package. 
