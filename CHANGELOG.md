@@ -1,5 +1,10 @@
 # ember-cli-d3-shape Changelog
 
+### 0.8.5 (May 18, 2016)
+
+- [#11](https://github.com/ivanvanderbyl/ember-cli-d3-shape/pull/11) Updated ember-cli to 2.5.0
+- [#13](https://github.com/ivanvanderbyl/ember-cli-d3-shape/pull/13) Removed dummy app (see `ivanvanderbyl/maximum-plaid` instead)
+
 ### 0.8.4 (May 16, 2016)
 
 - Corrected version number on changelog
