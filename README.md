@@ -1,5 +1,7 @@
 # ember-cli-d3-shape
 
+[![Build Status](https://travis-ci.org/ivanvanderbyl/ember-cli-d3-shape.svg?branch=master)](https://travis-ci.org/ivanvanderbyl/ember-cli-d3-shape) [![Ember Observer Score](https://emberobserver.com/badges/ember-cli-d3-shape.svg)](https://emberobserver.com/addons/ember-cli-d3-shape) [![npm version](https://badge.fury.io/js/ember-cli-d3-shape.svg)](https://badge.fury.io/js/ember-cli-d3-shape) [![Dependency Status](https://david-dm.org/ivanvanderbyl/ember-cli-d3-shape.svg)](https://david-dm.org/ivanvanderbyl/ember-cli-d3-shape) [![devDependency Status](https://david-dm.org/ivanvanderbyl/ember-cli-d3-shape/dev-status.svg)](https://david-dm.org/ivanvanderbyl/ember-cli-d3-shape#info=devDependencies)
+
 `ember-cli-d3-shape` is a shim for D3 v4, loaded from NPM as ES6 modules. It includes `d3-shape` and all version 4 modules in D3 `4.0.0-alpha.40+`.
 
 ---
