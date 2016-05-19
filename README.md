@@ -26,8 +26,6 @@ import { scaleOrdinal } from 'd3-scale';
 import { extent } from 'd3-array';
 ```
 
-Or check out the [Donut chart implementation](/tests/dummy/app/components/d3-donut/component.js) in the dummy app.
-
 ### Included D3 modules:
 
 - [d3-array](https://github.com/d3/d3-array)
