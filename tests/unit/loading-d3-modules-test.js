@@ -1,6 +1,7 @@
 import { module, test } from 'qunit';
 import { mean } from 'd3-array';
 import { axisTop } from 'd3-axis';
+import { brush } from 'd3-brush';
 import { keys } from 'd3-collection';
 import { color } from 'd3-color';
 import { dispatch } from 'd3-dispatch';
@@ -34,6 +35,10 @@ test('loading d3-array', function(assert) {
 
 test('loading d3-axis', function(assert) {
   assert.equal(typeof axisTop, 'function', 'loaded axisTop');
+});
+
+test('loading d3-brush', function(assert) {
+  assert.equal(typeof brush, 'function', 'loaded brush');
 });
 
 test('loading d3-collection', function(assert) {
@@ -105,6 +110,7 @@ test('loading d3-quadtree', function(assert) {
   assert.deepEqual(q.add([1, 0]).root(), [{ data: [0, 0] }, { data: [1, 0] },, { data: [1, 1] }]);
   assert.deepEqual(q.add([0, 1]).root(), [{ data: [0, 0] }, { data: [1, 0] }, { data: [0, 1] }, { data: [1, 1] }]);
 });
+
 test('loading d3-queue', function(assert) {
   let done = assert.async();
   assert.expect(2);
