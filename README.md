@@ -50,7 +50,7 @@ import { extent } from 'd3-array';
 - [d3-selection](https://github.com/d3/d3-selection)
 - [d3-shape](https://github.com/d3/d3-shape)
 - [d3-time](https://github.com/d3/d3-time)
-- [d3-time](https://github.com/d3/d3-time)
+- [d3-time-format](https://github.com/d3/d3-time-format)
 - [d3-timer](https://github.com/d3/d3-timer)
 - [d3-transition](https://github.com/d3/d3-transition)
 - [d3-voronoi](https://github.com/d3/d3-voronoi)
