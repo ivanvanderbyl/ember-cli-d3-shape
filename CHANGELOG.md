@@ -1,5 +1,9 @@
 # ember-cli-d3-shape Changelog
 
+### 0.8.7 (June 15, 2016)
+
+- [#19](https://github.com/ivanvanderbyl/ember-cli-d3-shape/pull/19) Updated D3 dependencies to latest stable releases.
+
 ### 0.8.6 (June 5, 2016)
 
 - Updated D3 dependencies to match `d3@4.0.0-alpha.44`
