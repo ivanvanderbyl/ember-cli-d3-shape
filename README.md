@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/ivanvanderbyl/ember-cli-d3-shape.svg?branch=master)](https://travis-ci.org/ivanvanderbyl/ember-cli-d3-shape) [![Ember Observer Score](https://emberobserver.com/badges/ember-cli-d3-shape.svg)](https://emberobserver.com/addons/ember-cli-d3-shape) [![npm version](https://badge.fury.io/js/ember-cli-d3-shape.svg)](https://badge.fury.io/js/ember-cli-d3-shape) [![Dependency Status](https://david-dm.org/ivanvanderbyl/ember-cli-d3-shape.svg)](https://david-dm.org/ivanvanderbyl/ember-cli-d3-shape) [![devDependency Status](https://david-dm.org/ivanvanderbyl/ember-cli-d3-shape/dev-status.svg)](https://david-dm.org/ivanvanderbyl/ember-cli-d3-shape#info=devDependencies)
 
-`ember-cli-d3-shape` is a shim for D3 v4, loaded from NPM as ES6 modules. It includes `d3-shape` and all version 4 modules in D3 `4.0.0-alpha.44+`.
+`ember-cli-d3-shape` is a shim for D3 `4.0.0-rc.1`, loaded from NPM as ES6 modules. It includes `d3-shape` and all version 4 modules in D3 `4.0.0-rc.1`.
 
 ---
 
@@ -30,6 +30,7 @@ import { extent } from 'd3-array';
 
 - [d3-array](https://github.com/d3/d3-array)
 - [d3-axis](https://github.com/d3/d3-axis)
+- [d3-brush](https://github.com/d3/d3-brush)
 - [d3-collection](https://github.com/d3/d3-collection)
 - [d3-color](https://github.com/d3/d3-color)
 - [d3-dispatch](https://github.com/d3/d3-dispatch)
@@ -55,7 +56,6 @@ import { extent } from 'd3-array';
 - [d3-transition](https://github.com/d3/d3-transition)
 - [d3-voronoi](https://github.com/d3/d3-voronoi)
 - [d3-zoom](https://github.com/d3/d3-zoom)
-- [d3-brush](https://github.com/d3/d3-brush)
 
 _This addon will be updated when new releases are cut of these packages. 
 Currently none of these are 1.0 stable, so some of your code might break by 
