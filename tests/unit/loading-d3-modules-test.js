@@ -170,7 +170,7 @@ test('loading d3-time', function(assert) {
 
 test('loading d3-time-format', function(assert) {
   let f = timeFormat('%c');
-  assert.equal(f(+new Date(1990, 0, 1)), 'Mon Jan  1 00:00:00 1990');
+  assert.equal(f(+new Date(1990, 0, 1)), '1/1/1990, 12:00:00 AM');
 });
 
 test('loading d3-timer', function(assert) {

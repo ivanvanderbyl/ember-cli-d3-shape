@@ -1,5 +1,10 @@
 # ember-cli-d3-shape Changelog
 
+### 0.9.0 (June 27, 2016)
+
+- Updated D3 packages to 1.0.x in line with D3 version `4.0.0-rc.1`. [See D3 commit](https://github.com/d3/d3/commit/21b6f2b49e8f343de37dbddcf0130ddb97302e66)
+- Bumped version to 0.9 as this breaks some time formats, and preparing for `1.0` in a few weeks.
+
 ### 0.8.7 (June 15, 2016)
 
 - [#19](https://github.com/ivanvanderbyl/ember-cli-d3-shape/pull/19) Updated D3 dependencies to latest stable releases.
