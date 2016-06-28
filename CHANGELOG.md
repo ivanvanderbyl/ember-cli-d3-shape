@@ -1,5 +1,9 @@
 # ember-cli-d3-shape Changelog
 
+### 0.9.2 (June 28, 2016)
+
+- Updated all D3 packages to 1.0.x stable versions.
+
 ### 0.9.1 (June 28, 2016)
 
 - Updated include mechanism to support usage in nested addons, including maximum-plaid.
