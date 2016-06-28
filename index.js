@@ -64,7 +64,7 @@ module.exports = {
         }
       }
     }
-    let _this = this;
+    var _this = this;
     this.d3Modules.forEach(function(packageName) {
       _this.import(path.join('vendor', packageName, packageName + '.js'));
     });
@@ -77,7 +77,7 @@ module.exports = {
       trees.push(tree);
     }
 
-    // let nodeModulesPath = this.nodeModulesPath;
+    // var nodeModulesPath = this.nodeModulesPath;
 
     this.d3Modules.forEach(function(packageName) {
       var d3PathToSrc, srcTree;
