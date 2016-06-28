@@ -106,8 +106,8 @@ test('loading d3-polygon', function(assert) {
 test('loading d3-quadtree', function(assert) {
   let q = quadtree();
   assert.deepEqual(q.add([0, 0]).root(), { data: [0, 0] });
-  assert.deepEqual(q.add([1, 1]).root(), [{ data: [0, 0] },,, { data: [1, 1] }]);
-  assert.deepEqual(q.add([1, 0]).root(), [{ data: [0, 0] }, { data: [1, 0] },, { data: [1, 1] }]);
+  assert.deepEqual(q.add([1, 1]).root(), [{ data: [0, 0] }, undefined, undefined, { data: [1, 1] }]);
+  assert.deepEqual(q.add([1, 0]).root(), [{ data: [0, 0] }, { data: [1, 0] }, undefined, { data: [1, 1] }]);
   assert.deepEqual(q.add([0, 1]).root(), [{ data: [0, 0] }, { data: [1, 0] }, { data: [0, 1] }, { data: [1, 1] }]);
 });
 
