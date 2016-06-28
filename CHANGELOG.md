@@ -1,5 +1,9 @@
 # ember-cli-d3-shape Changelog
 
+### 0.9.3 (June 28, 2016)
+
+- Removed `let` from index so we can support older Node.
+
 ### 0.9.2 (June 28, 2016)
 
 - Updated all D3 packages to 1.0.x stable versions.
