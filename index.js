@@ -5,7 +5,6 @@ var Funnel = require('broccoli-funnel');
 var mergeTrees = require('broccoli-merge-trees');
 var path = require('path');
 var rename = require('broccoli-stew').rename;
-var packageDependencies = require("./package.json")['dependencies'];
 var AMDDefineFilter = require('./lib/amd-define-filter');
 var fs = require('fs');
 
@@ -16,7 +15,7 @@ function lookupPackage(packageName) {
 }
 
 module.exports = {
-  isDevelopingAddon: function(){
+  isDevelopingAddon: function() {
     return true;
   },
 
@@ -26,15 +25,33 @@ module.exports = {
     // Imported from package.json
   ],
 
-  included: function(app) {
-    this._super.included.apply(this, arguments);
+  /**
+   * `import()` taken from ember-cli 2.7
+   */
+  import: function(asset, options) {
+    var app = this.app;
+    while (app.app) {
+      app = app.app;
+    }
+    app.import(asset, options);
+  },
 
-    // Support being a nested addon.
-    if (typeof app.import !== 'function' && app.app) {
+  included: function(app) {
+    this._super.included && this._super.included.apply(this, arguments);
+    this.app = app;
+
+    while (app.app) {
       app = app.app;
     }
 
-    this.app = app;
+    // This essentially means we'll skip importing this package twice, if it's
+    // a dependency of another package.
+    if (!app.import) {
+      console.log('skipping import for', app.name);
+      return;
+    }
+
+    var packageDependencies = this.dependencies();
 
     this.d3Modules = [];
 
@@ -45,33 +62,40 @@ module.exports = {
         }
       }
     }
-
+    let _this = this;
     this.d3Modules.forEach(function(packageName) {
-      app.import(path.join('vendor', packageName, packageName + '.js'));
+      _this.import(path.join('vendor', packageName, packageName + '.js'));
     });
   },
 
   treeForVendor: function(tree) {
     var trees = [];
 
-    if (tree) { trees.push(tree); }
+    if (tree) {
+      trees.push(tree);
+    }
+
+    // let nodeModulesPath = this.nodeModulesPath;
 
     this.d3Modules.forEach(function(packageName) {
       var d3PathToSrc, srcTree;
 
       // Import existing builds from node d3 packages, which are UMD packaged.
       var packageBuildPath = path.join('build', packageName + '.js');
+
       d3PathToSrc = lookupPackage(packageName);
 
+      // d3PathToSrc = path.join(nodeModulesPath, packageName);
+
       if (!fs.statSync(path.join(d3PathToSrc, packageBuildPath)).isFile()) {
-        console.error("[ERROR] D3 Package (" + packageName + ") is not built as expected, cannot continue. Please report this as a bug.");
+        console.error('[ERROR] D3 Package (' + packageName + ') is not built as expected, cannot continue. Please report this as a bug.');
         return;
       }
 
       var tree = new Funnel(d3PathToSrc, {
         include: [packageBuildPath],
         destDir: '/' + packageName,
-        annotation: 'Funnel: D3 Source ['+ packageName + ']'
+        annotation: 'Funnel: D3 Source [' + packageName + ']'
       });
 
       srcTree = new AMDDefineFilter(tree, packageName);
