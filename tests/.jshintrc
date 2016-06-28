@@ -48,6 +48,5 @@
   "white": false,
   "eqnull": true,
   "esnext": true,
-  "unused": true,
-  "elision":true
+  "unused": true
 }
