@@ -16,7 +16,7 @@ function lookupPackage(packageName) {
 
 module.exports = {
   isDevelopingAddon: function() {
-    return true;
+    return false;
   },
 
   name: 'ember-cli-d3-shape',
@@ -47,7 +47,9 @@ module.exports = {
     // This essentially means we'll skip importing this package twice, if it's
     // a dependency of another package.
     if (!app.import) {
-      console.log('skipping import for', app.name);
+      if (this.isDevelopingAddon()) {
+        console.log('[ember-cli-d3-shape] skipping included hook for', app.name);
+      }
       return;
     }
 
@@ -84,8 +86,6 @@ module.exports = {
       var packageBuildPath = path.join('build', packageName + '.js');
 
       d3PathToSrc = lookupPackage(packageName);
-
-      // d3PathToSrc = path.join(nodeModulesPath, packageName);
 
       if (!fs.statSync(path.join(d3PathToSrc, packageBuildPath)).isFile()) {
         console.error('[ERROR] D3 Package (' + packageName + ') is not built as expected, cannot continue. Please report this as a bug.');
