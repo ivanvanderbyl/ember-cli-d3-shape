@@ -38,7 +38,6 @@
     "ember-suave": "2.0.1",
     "ember-try": "^0.2.2",
     "loader.js": "^4.0.1",
-    "lookup-deps": "^1.0.0",
     "npm-registry-client": "^7.1.1",
     "semver": "^5.1.0"
   },
@@ -51,14 +50,15 @@
     "new d3"
   ],
   "dependencies": {
+    "lookup-deps": "^1.0.0",
     "broccoli-filter": "^1.2.3",
     "broccoli-funnel": "^1.0.1",
     "broccoli-merge-trees": "^1.1.1",
     "broccoli-persistent-filter": "^1.1.6",
     "broccoli-stew": "^1.2.0",
     "d3": "^4.1.0",
-    "ember-cli-babel": "^5.1.6",
     "recast": "^0.11.0"
+    "ember-cli-babel": "^5.1.6",
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
