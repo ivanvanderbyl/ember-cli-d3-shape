@@ -81,8 +81,6 @@ module.exports = {
       var packageBuildPath = path.join('build', packageName + '.js');
       d3PathToSrc = path.join(d3PackagePath, 'node_modules', packageName);
 
-      d3PathToSrc = lookupPackage(packageName);
-
       if (!fs.statSync(path.join(d3PathToSrc, packageBuildPath)).isFile()) {
         console.error('[ERROR] D3 Package (' + packageName + ') is not built as expected, cannot continue. Please report this as a bug.');
         return;
