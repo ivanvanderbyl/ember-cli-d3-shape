@@ -8,6 +8,8 @@ var rename = require('broccoli-stew').rename;
 var AMDDefineFilter = require('./lib/amd-define-filter');
 var fs = require('fs');
 
+var Lookup = require('lookup-deps');
+
 function lookupPackage(packageName) {
   var modulePath = require.resolve(packageName);
   var i = modulePath.lastIndexOf(path.sep + 'build');
@@ -44,6 +46,10 @@ module.exports = {
       app = app.app;
     }
 
+    // Find all dependencies of `d3`
+    this.lookupDeps = new Lookup();
+    this.d3Modules = this.lookupDeps.depsKeys('d3');
+
     // This essentially means we'll skip importing this package twice, if it's
     // a dependency of another package.
     if (!app.import) {
@@ -53,17 +59,6 @@ module.exports = {
       return;
     }
 
-    var packageDependencies = this.dependencies();
-
-    this.d3Modules = [];
-
-    for (var packageName in packageDependencies) {
-      if (packageDependencies.hasOwnProperty(packageName)) {
-        if (/^d3\-/.test(packageName)) {
-          this.d3Modules.push(packageName);
-        }
-      }
-    }
     var _this = this;
     this.d3Modules.forEach(function(packageName) {
       _this.import(path.join('vendor', packageName, packageName + '.js'));
@@ -77,13 +72,14 @@ module.exports = {
       trees.push(tree);
     }
 
-    // var nodeModulesPath = this.nodeModulesPath;
+    var d3PackagePath = this.lookupDeps.paths('d3').d3;
 
     this.d3Modules.forEach(function(packageName) {
       var d3PathToSrc, srcTree;
 
       // Import existing builds from node d3 packages, which are UMD packaged.
       var packageBuildPath = path.join('build', packageName + '.js');
+      d3PathToSrc = path.join(d3PackagePath, 'node_modules', packageName);
 
       d3PathToSrc = lookupPackage(packageName);
 
