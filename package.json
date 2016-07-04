@@ -58,7 +58,7 @@
     "broccoli-stew": "^1.2.0",
     "d3": "^4.1.0",
     "recast": "^0.11.0",
-    "ember-cli-babel": "^5.1.6",
+    "ember-cli-babel": "^5.1.6"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
