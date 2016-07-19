@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-d3-shape",
-  "version": "1.0.0-4.1.0",
+  "version": "0.9.4-4.1.1.0",
   "description": "Data-Driven Documents for Ember",
   "directories": {
     "doc": "doc",
