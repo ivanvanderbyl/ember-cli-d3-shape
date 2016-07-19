@@ -44,6 +44,14 @@ module.exports = {
       app = app.app;
     }
 
+    var pkg = require(path.join(lookupPackage('d3'), 'package.json'));
+
+    // Find all dependencies of `d3`
+
+    this.d3Modules = Object.keys(pkg.dependencies).filter(function(name) {
+      return /^d3\-/.test(name);
+    });
+
     // This essentially means we'll skip importing this package twice, if it's
     // a dependency of another package.
     if (!app.import) {
@@ -53,17 +61,6 @@ module.exports = {
       return;
     }
 
-    var packageDependencies = this.dependencies();
-
-    this.d3Modules = [];
-
-    for (var packageName in packageDependencies) {
-      if (packageDependencies.hasOwnProperty(packageName)) {
-        if (/^d3\-/.test(packageName)) {
-          this.d3Modules.push(packageName);
-        }
-      }
-    }
     var _this = this;
     this.d3Modules.forEach(function(packageName) {
       _this.import(path.join('vendor', packageName, packageName + '.js'));
@@ -77,7 +74,7 @@ module.exports = {
       trees.push(tree);
     }
 
-    // var nodeModulesPath = this.nodeModulesPath;
+    var d3PackagePath = lookupPackage('d3');
 
     this.d3Modules.forEach(function(packageName) {
       var d3PathToSrc, srcTree;
@@ -85,9 +82,17 @@ module.exports = {
       // Import existing builds from node d3 packages, which are UMD packaged.
       var packageBuildPath = path.join('build', packageName + '.js');
 
-      d3PathToSrc = lookupPackage(packageName);
+      d3PathToSrc = path.join(d3PackagePath, 'node_modules', packageName);
 
-      if (!fs.statSync(path.join(d3PathToSrc, packageBuildPath)).isFile()) {
+      try {
+        fs.statSync(path.join(d3PathToSrc)).isDirectory();
+      } catch(err) {
+        d3PathToSrc = lookupPackage(packageName);
+      }
+
+      try {
+        fs.statSync(path.join(d3PathToSrc, packageBuildPath)).isFile()
+      } catch(err) {
         console.error('[ERROR] D3 Package (' + packageName + ') is not built as expected, cannot continue. Please report this as a bug.');
         return;
       }
