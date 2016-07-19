@@ -81,8 +81,12 @@ module.exports = {
 
       // Import existing builds from node d3 packages, which are UMD packaged.
       var packageBuildPath = path.join('build', packageName + '.js');
-      // d3PathToSrc = path.join(d3PackagePath, 'node_modules', packageName);
-      d3PathToSrc = lookupPackage(packageName);
+
+      d3PathToSrc = path.join(d3PackagePath, 'node_modules', packageName);
+
+      if (!fs.statSync(path.join(d3PathToSrc)).isDirectory()) {
+        d3PathToSrc = lookupPackage(packageName);
+      }
 
       if (!fs.statSync(path.join(d3PathToSrc, packageBuildPath)).isFile()) {
         console.error('[ERROR] D3 Package (' + packageName + ') is not built as expected, cannot continue. Please report this as a bug.');
