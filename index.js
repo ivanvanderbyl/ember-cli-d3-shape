@@ -82,12 +82,12 @@ module.exports = {
       // Import existing builds from node d3 packages, which are UMD packaged.
       var packageBuildPath = path.join('build', packageName + '.js');
 
-      d3PathToSrc = lookupPackage(packageName);
+      d3PathToSrc = path.join(d3PackagePath, 'node_modules', packageName);
 
       try {
         fs.statSync(path.join(d3PathToSrc)).isDirectory();
       } catch(err) {
-        d3PathToSrc = path.join(d3PackagePath, 'node_modules', packageName);
+        d3PathToSrc = lookupPackage(packageName);
       }
 
       try {
