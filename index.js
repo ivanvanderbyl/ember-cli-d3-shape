@@ -8,8 +8,6 @@ var rename = require('broccoli-stew').rename;
 var AMDDefineFilter = require('./lib/amd-define-filter');
 var fs = require('fs');
 
-var Lookup = require('lookup-deps');
-
 function lookupPackage(packageName) {
   var modulePath = require.resolve(packageName);
   var i = modulePath.lastIndexOf(path.sep + 'build');
