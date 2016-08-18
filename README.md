@@ -8,12 +8,12 @@
 
 D3 Shape is a set of primitives for building complex data visualisations. Because
 it depends on all the other components of D3, this package also provides all other
-D3 `v4.0` packages (see below for a list). 
+D3 `v4.0` packages (see below for a list).
 
 This addon is just a shim, if you're looking for a more high level visualisation addon,
 check out [maximum-plaid](https://github.com/ivanvanderbyl/maximum-plaid).
 
-Each package is importable as per the D3 documentation for each package. 
+Each package is importable as per the D3 documentation for each package.
 This also means that you don't need to import the entire `d3.js` build into your App if you
 only need a function or two. For example, check out [d3-array](https://github.com/d3/d3-array) for
 an extensive library of useful Array functions not natively found in Javascript.
@@ -57,8 +57,8 @@ import { extent } from 'd3-array';
 - [d3-voronoi](https://github.com/d3/d3-voronoi)
 - [d3-zoom](https://github.com/d3/d3-zoom)
 
-_This addon will be updated when new releases are cut of these packages. 
-Currently none of these are 1.0 stable, so some of your code might break by 
+_This addon will be updated when new releases are cut of these packages.
+Currently none of these are 1.0 stable, so some of your code might break by
 upgrading. It is recommended that you have solid tests in place._
 
 ## Installation & Usage
@@ -86,6 +86,27 @@ export default Ember.Component.extend({
   }
 });
 ```
+
+## Svelte Builds
+
+In case you do not want to include *all* of d3's dependencies, you may whitelist the packages
+that you want to include in your project's `config/environment.js` file.
+
+For example, if you only wanted to use `d3-scale`, you would do:
+
+```js
+// config/environment.js
+module.exports = function() {
+  return {
+    'ember-cli-d3-shape': {
+      only: ['d3-scale']
+    }
+  };
+};
+```
+
+**Note**: Even though you only add `d3-scale`, it has a few transitive d3 dependencies.
+These are added to your project automatically.
 
 ## Running
 

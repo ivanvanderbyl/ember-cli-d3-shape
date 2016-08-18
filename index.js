@@ -6,13 +6,10 @@ var mergeTrees = require('broccoli-merge-trees');
 var path = require('path');
 var rename = require('broccoli-stew').rename;
 var AMDDefineFilter = require('./lib/amd-define-filter');
-var fs = require('fs');
-
-function lookupPackage(packageName) {
-  var modulePath = require.resolve(packageName);
-  var i = modulePath.lastIndexOf(path.sep + 'build');
-  return modulePath.slice(0, i);
-}
+var lookupPackage = require('./lib/lookup-package-build');
+var d3DepsForPackage = require('./lib/d3-deps-for-package');
+var isD3Dependency = require('./lib/is-d3-dependency');
+var pathToD3Source = require('./lib/path-to-d3-module-src');
 
 module.exports = {
   isDevelopingAddon: function() {
@@ -44,13 +41,10 @@ module.exports = {
       app = app.app;
     }
 
-    var pkg = require(path.join(lookupPackage('d3'), 'package.json'));
-
     // Find all dependencies of `d3`
-
-    this.d3Modules = Object.keys(pkg.dependencies).filter(function(name) {
-      return /^d3\-/.test(name);
-    });
+    var config = app.project.config(app.env) || {};
+    var addonConfig = config[this.name] || {};
+    this.d3Modules = this.getD3Modules(addonConfig);
 
     // This essentially means we'll skip importing this package twice, if it's
     // a dependency of another package.
@@ -67,6 +61,31 @@ module.exports = {
     });
   },
 
+  getD3Modules(config) {
+    var onlyModules = config.only || [];
+    return onlyModules.length ? this.getDefinedD3Modules(onlyModules) : this.getAllD3Modules();
+  },
+
+  getAllD3Modules() {
+    return d3DepsForPackage('d3');
+  },
+
+  getDefinedD3Modules(only) {
+    var modules = {};
+
+    only.forEach(function(name) {
+      if (isD3Dependency(name)) {
+        modules[name] = true;
+      }
+
+      d3DepsForPackage(name).forEach(function(depName) {
+        modules[depName] = true;
+      });
+    });
+
+    return Object.keys(modules);
+  },
+
   treeForVendor: function(tree) {
     var trees = [];
 
@@ -74,38 +93,20 @@ module.exports = {
       trees.push(tree);
     }
 
-    var d3PackagePath = lookupPackage('d3');
-
-    this.d3Modules.forEach(function(packageName) {
-      var d3PathToSrc, srcTree;
-
-      // Import existing builds from node d3 packages, which are UMD packaged.
-      var packageBuildPath = path.join('build', packageName + '.js');
-
-      d3PathToSrc = path.join(d3PackagePath, 'node_modules', packageName);
-
-      try {
-        fs.statSync(path.join(d3PathToSrc)).isDirectory();
-      } catch(err) {
-        d3PathToSrc = lookupPackage(packageName);
-      }
-
-      try {
-        fs.statSync(path.join(d3PathToSrc, packageBuildPath)).isFile()
-      } catch(err) {
-        console.error('[ERROR] D3 Package (' + packageName + ') is not built as expected, cannot continue. Please report this as a bug.');
+    this.d3Modules.map(pathToD3Source).forEach(function(source) {
+      if (!source) {
         return;
       }
 
-      var tree = new Funnel(d3PathToSrc, {
-        include: [packageBuildPath],
-        destDir: '/' + packageName,
-        annotation: 'Funnel: D3 Source [' + packageName + ']'
+      var tree = new Funnel(source.d3PathToSrc, {
+        include: [source.packageBuildPath],
+        destDir: '/' + source.packageName,
+        annotation: 'Funnel: D3 Source [' + source.packageName + ']'
       });
 
-      srcTree = new AMDDefineFilter(tree, packageName);
+      var srcTree = new AMDDefineFilter(tree, source.packageName);
       trees.push(rename(srcTree, function() {
-        return '/' + packageName + '/' + packageName + '.js';
+        return '/' + source.packageName + '/' + source.packageName + '.js';
       }));
     });
 
