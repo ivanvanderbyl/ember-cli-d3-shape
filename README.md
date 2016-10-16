@@ -1,3 +1,9 @@
+# DEPRECATED
+
+**Please use [ember-d3](https://github.com/brzpegasus/ember-d3) instead for continues D3@v4.x support as a drop in replacement. This repo is no longer maintained :beers:**
+
+<hr>
+
 # ember-cli-d3-shape
 
 [![Build Status](https://travis-ci.org/ivanvanderbyl/ember-cli-d3-shape.svg?branch=master)](https://travis-ci.org/ivanvanderbyl/ember-cli-d3-shape) [![Ember Observer Score](https://emberobserver.com/badges/ember-cli-d3-shape.svg)](https://emberobserver.com/addons/ember-cli-d3-shape) [![npm version](https://badge.fury.io/js/ember-cli-d3-shape.svg)](https://badge.fury.io/js/ember-cli-d3-shape) [![Dependency Status](https://david-dm.org/ivanvanderbyl/ember-cli-d3-shape.svg)](https://david-dm.org/ivanvanderbyl/ember-cli-d3-shape) [![devDependency Status](https://david-dm.org/ivanvanderbyl/ember-cli-d3-shape/dev-status.svg)](https://david-dm.org/ivanvanderbyl/ember-cli-d3-shape#info=devDependencies)
