@@ -9,7 +9,8 @@
   "scripts": {
     "build": "ember build",
     "start": "ember server",
-    "test": "ember try:each"
+    "test": "ember try:each",
+    "node-test": "mocha test --recursive --reporter spec"
   },
   "repository": "ivanvanderbyl/ember-cli-d3-shape",
   "engines": {
@@ -19,6 +20,7 @@
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.2",
+    "chai": "^3.5.0",
     "ember-ajax": "2.3.1",
     "ember-cli": "2.6.2",
     "ember-cli-app-version": "^1.0.0",
@@ -37,6 +39,7 @@
     "ember-resolver": "^2.0.3",
     "ember-suave": "2.0.1",
     "loader.js": "^4.0.1",
+    "mocha": "^3.0.2",
     "npm-registry-client": "^7.1.1",
     "semver": "^5.1.0"
   },
